@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Argon UI Testing Sandbox</title>
+  
+  <!-- Fonts & Icons -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <style>
+    :root {
+      --primary: #5e72e4;
+      --primary-dark: #324cdd;
+      --secondary: #f7fafc;
+      --success: #2dce89;
+      --info: #11cdef;
+      --warning: #fb6340;
+      --danger: #f5365c;
+      --light: #adb5bd;
+      --dark: #172b4d;
+      --argon-gradient: linear-gradient(87deg, #5e72e4 0, #825ee4 100%);
+    }
+
+    body {
+      font-family: 'Open Sans', sans-serif;
+      background-color: #f8f9fe;
+      color: #525f7f;
+      overflow-x: hidden;
+    }
+
+    .bg-gradient-argon {
+      background: var(--argon-gradient) !important;
+    }
+
+    .navbar-argon {
+      background: transparent;
+      padding: 1.2rem 1rem;
+    }
+
+    .navbar-brand {
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      font-size: 1.35rem;
+    }
+
+    .header-hero {
+      padding-bottom: 7rem;
+      padding-top: 2rem;
+    }
+
+    .stat-card {
+      border: 0;
+      border-radius: 0.5rem;
+      box-shadow: 0 0 2rem 0 rgba(136, 152, 170, .15);
+      transition: all 0.25s ease;
+    }
+
+    .stat-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 0.5rem 2rem 0 rgba(136, 152, 170, .25);
+    }
+
+    .icon-shape {
+      width: 48px;
+      height: 48px;
+      background-color: #fff;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 6px rgba(50, 50, 93, .11), 0 1px 3px rgba(0, 0, 0, .08);
+    }
+
+    .main-container {
+      margin-top: -5rem;
+    }
+
+    .card-argon {
+      border: 0;
+      border-radius: 0.5rem;
+      box-shadow: 0 0 2rem 0 rgba(136, 152, 170, .15);
+      background-color: #fff;
+      margin-bottom: 2rem;
+    }
+
+    .btn-argon-primary {
+      background-color: var(--primary);
+      border-color: var(--primary);
+      color: #fff;
+      box-shadow: 0 4px 6px rgba(50, 50, 93, .11), 0 1px 3px rgba(0, 0, 0, .08);
+      font-weight: 600;
+      border-radius: 0.375rem;
+    }
+    .btn-argon-primary:hover {
+      background-color: var(--primary-dark);
+      color: #fff;
+    }
+
+    .btn-gradient {
+      background: var(--argon-gradient);
+      color: #fff;
+      border: none;
+      box-shadow: 0 4px 6px rgba(50, 50, 93, .15);
+    }
+    .btn-gradient:hover {
+      color: #fff;
+      filter: brightness(1.08);
+    }
+
+    .badge-soft-success {
+      background-color: rgba(45, 206, 137, 0.15);
+      color: var(--success);
+      font-weight: 700;
+    }
+    .badge-soft-danger {
+      background-color: rgba(245, 54, 92, 0.15);
+      color: var(--danger);
+      font-weight: 700;
+    }
+    .badge-soft-primary {
+      background-color: rgba(94, 114, 228, 0.15);
+      color: var(--primary);
+      font-weight: 700;
+    }
+
+    .form-control:focus {
+      border-color: var(--primary);
+      box-shadow: 0 1px 3px rgba(50, 50, 93, .15), 0 1px 0 rgba(0, 0, 0, .02);
+    }
+
+    .tab-btn.active {
+      background-color: #fff;
+      color: var(--primary);
+      box-shadow: 0 4px 6px rgba(50, 50, 93, .11);
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Header / Hero -->
+  <div class="bg-gradient-argon text-white header-hero">
+    <div class="container-fluid px-lg-5">
+      <!-- Navbar -->
+      <nav class="navbar navbar-expand-lg navbar-dark navbar-argon mb-4">
+        <a class="navbar-brand text-white d-flex align-items-center gap-2" href="#">
+          <i class="fa-solid fa-atom fa-spin text-warning"></i>
+          <span>ARGON UI TESTING</span>
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navContent">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navContent">
+          <ul class="navbar-nav ms-auto align-items-center gap-3">
+            <li class="nav-item">
+              <a class="nav-link text-white active" href="#dashboard"><i class="fa-solid fa-gauge me-1"></i> Dashboard</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-white-50" href="#components"><i class="fa-solid fa-cube me-1"></i> Components</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-white-50" href="#tables"><i class="fa-solid fa-table me-1"></i> Test Logs</a>
+            </li>
+            <li class="nav-item">
+              <a class="btn btn-sm btn-outline-light rounded-pill px-3" href="cinematic.html">
+                <i class="fa-solid fa-film me-1 text-warning"></i> 3D Cinematic Demo
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="btn btn-sm btn-light text-primary fw-bold rounded-pill px-3" href="https://github.com/NikhilForge/argonuitesting" target="_blank">
+                <i class="fa-brands fa-github me-1"></i> GitHub
+              </a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+
+      <!-- Hero Subtitle & Stat Cards -->
+      <div class="row align-items-center mb-5">
+        <div class="col-lg-8">
+          <h1 class="display-6 fw-bold text-white mb-2">Argon UI Testing Sandbox</h1>
+          <p class="lead text-white-50">Interactive visual regression, component validation, and responsive preview environment built on the Argon Design System.</p>
+        </div>
+        <div class="col-lg-4 text-lg-end">
+          <button id="runAllTestsBtn" class="btn btn-white text-primary fw-bold shadow-sm px-4 py-2" onclick="simulateTests()">
+            <i class="fa-solid fa-play me-2 text-success"></i> Run Test Suite
+          </button>
+        </div>
+      </div>
+
+      <!-- Stat Cards -->
+      <div class="row g-4">
+        <div class="col-xl-3 col-md-6">
+          <div class="card stat-card p-3">
+            <div class="d-flex justify-content-between align-items-center">
+              <div>
+                <span class="text-muted text-uppercase fw-bold small">Tests Total</span>
+                <h3 class="fw-bold mb-0 text-dark" id="statTotal">142</h3>
+              </div>
+              <div class="icon-shape bg-primary text-white">
+                <i class="fa-solid fa-vial"></i>
+              </div>
+            </div>
+            <p class="mt-3 mb-0 text-sm">
+              <span class="text-success fw-bold"><i class="fa fa-arrow-up"></i> 100%</span>
+              <span class="text-muted ms-1">suite registered</span>
+            </p>
+          </div>
+        </div>
+
+        <div class="col-xl-3 col-md-6">
+          <div class="card stat-card p-3">
+            <div class="d-flex justify-content-between align-items-center">
+              <div>
+                <span class="text-muted text-uppercase fw-bold small">Tests Passed</span>
+                <h3 class="fw-bold mb-0 text-success" id="statPassed">139</h3>
+              </div>
+              <div class="icon-shape bg-success text-white">
+                <i class="fa-solid fa-check"></i>
+              </div>
+            </div>
+            <p class="mt-3 mb-0 text-sm">
+              <span class="text-success fw-bold"><i class="fa fa-arrow-up"></i> 97.9%</span>
+              <span class="text-muted ms-1">pass rate</span>
+            </p>
+          </div>
+        </div>
+
+        <div class="col-xl-3 col-md-6">
+          <div class="card stat-card p-3">
+            <div class="d-flex justify-content-between align-items-center">
+              <div>
+                <span class="text-muted text-uppercase fw-bold small">Render Latency</span>
+                <h3 class="fw-bold mb-0 text-info">14.2 ms</h3>
+              </div>
+              <div class="icon-shape bg-info text-white">
+                <i class="fa-solid fa-bolt"></i>
+              </div>
+            </div>
+            <p class="mt-3 mb-0 text-sm">
+              <span class="text-success fw-bold"><i class="fa fa-arrow-down"></i> -4.8%</span>
+              <span class="text-muted ms-1">faster load</span>
+            </p>
+          </div>
+        </div>
+
+        <div class="col-xl-3 col-md-6">
+          <div class="card stat-card p-3">
+            <div class="d-flex justify-content-between align-items-center">
+              <div>
+                <span class="text-muted text-uppercase fw-bold small">UI Coverage</span>
+                <h3 class="fw-bold mb-0 text-warning">94.8%</h3>
+              </div>
+              <div class="icon-shape bg-warning text-white">
+                <i class="fa-solid fa-chart-pie"></i>
+              </div>
+            </div>
+            <p class="mt-3 mb-0 text-sm">
+              <span class="text-success fw-bold"><i class="fa fa-arrow-up"></i> +2.3%</span>
+              <span class="text-muted ms-1">all components</span>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <div class="container-fluid px-lg-5 main-container">
+    
+    <!-- Test Execution Banner (Hidden initially) -->
+    <div id="testProgressBanner" class="alert alert-light border-0 shadow-sm d-none mb-4" role="alert">
+      <div class="d-flex justify-content-between align-items-center mb-2">
+        <span class="fw-bold text-dark"><i class="fa-solid fa-spinner fa-spin text-primary me-2"></i> Running Argon Component Validations...</span>
+        <span id="progressText" class="badge bg-primary">0%</span>
+      </div>
+      <div class="progress" style="height: 6px;">
+        <div id="progressBar" class="progress-bar bg-gradient-argon" style="width: 0%"></div>
+      </div>
+    </div>
+
+    <!-- Chart & Live Metrics Row -->
+    <div class="row g-4 mb-4" id="dashboard">
+      <div class="col-xl-8">
+        <div class="card card-argon p-4">
+          <div class="d-flex justify-content-between align-items-center mb-4">
+            <div>
+              <span class="text-muted text-uppercase small fw-bold">Telemetry</span>
+              <h5 class="fw-bold text-dark mb-0">Component Interaction & Render Speeds</h5>
+            </div>
+            <div class="btn-group btn-group-sm">
+              <button class="btn btn-outline-primary active" onclick="updateChart('week')">Week</button>
+              <button class="btn btn-outline-primary" onclick="updateChart('month')">Month</button>
+            </div>
+          </div>
+          <div style="height: 300px;">
+            <canvas id="performanceChart"></canvas>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-xl-4">
+        <div class="card card-argon p-4">
+          <div class="mb-3">
+            <span class="text-muted text-uppercase small fw-bold">Test Distribution</span>
+            <h5 class="fw-bold text-dark mb-0">Component Breakdown</h5>
+          </div>
+          <div style="height: 250px;" class="d-flex justify-content-center">
+            <canvas id="distributionChart"></canvas>
+          </div>
+          <div class="d-flex justify-content-around mt-3 text-center small text-muted">
+            <div><i class="fa fa-circle text-primary me-1"></i> Buttons (35%)</div>
+            <div><i class="fa fa-circle text-info me-1"></i> Forms (40%)</div>
+            <div><i class="fa fa-circle text-success me-1"></i> Modals (25%)</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Components Showcase Row -->
+    <div class="row g-4 mb-4" id="components">
+      
+      <!-- Buttons & Badges -->
+      <div class="col-lg-6">
+        <div class="card card-argon p-4 h-100">
+          <h5 class="fw-bold text-dark mb-3"><i class="fa-solid fa-shapes text-primary me-2"></i> Buttons & Badges Testing</h5>
+          <p class="text-muted small">Validating hover states, shadows, active feedback, and color variants.</p>
+          
+          <div class="d-flex flex-wrap gap-2 mb-3">
+            <button class="btn btn-argon-primary">Primary</button>
+            <button class="btn btn-gradient">Argon Gradient</button>
+            <button class="btn btn-success shadow-sm">Success</button>
+            <button class="btn btn-info text-white shadow-sm">Info</button>
+            <button class="btn btn-warning text-white shadow-sm">Warning</button>
+            <button class="btn btn-danger shadow-sm">Danger</button>
+          </div>
+
+          <div class="d-flex flex-wrap gap-2 mb-4">
+            <button class="btn btn-outline-primary rounded-pill">Rounded Pill</button>
+            <button class="btn btn-outline-success rounded-pill"><i class="fa fa-heart me-1"></i> Icon Pill</button>
+            <button class="btn btn-sm btn-dark">Small Dark</button>
+            <button class="btn btn-lg btn-gradient">Large Action</button>
+          </div>
+
+          <span class="text-muted text-uppercase small fw-bold mb-2 d-block">Soft Badges & Status Tags</span>
+          <div class="d-flex flex-wrap gap-2">
+            <span class="badge badge-soft-primary px-3 py-2 rounded-pill">Primary Soft</span>
+            <span class="badge badge-soft-success px-3 py-2 rounded-pill"><i class="fa fa-check me-1"></i> Passed</span>
+            <span class="badge badge-soft-danger px-3 py-2 rounded-pill"><i class="fa fa-xmark me-1"></i> Blocked</span>
+            <span class="badge bg-warning text-dark px-3 py-2 rounded-pill">Pending</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Forms & Inputs -->
+      <div class="col-lg-6">
+        <div class="card card-argon p-4 h-100">
+          <h5 class="fw-bold text-dark mb-3"><i class="fa-solid fa-pen-to-square text-info me-2"></i> Input & Controls Validation</h5>
+          <p class="text-muted small">Testing floating labels, focus outline glow, input groups, and toggles.</p>
+          
+          <div class="row g-3">
+            <div class="col-md-6">
+              <label class="form-label small fw-bold text-muted">Test Target Name</label>
+              <div class="input-group">
+                <span class="input-group-text bg-light border-end-0"><i class="fa fa-code text-muted"></i></span>
+                <input type="text" class="form-control border-start-0" value="CardComponent_V2">
+              </div>
+            </div>
+            
+            <div class="col-md-6">
+              <label class="form-label small fw-bold text-muted">Environment</label>
+              <select class="form-select">
+                <option selected>Staging / Preview</option>
+                <option>Production Mirror</option>
+                <option>Local Mock</option>
+              </select>
+            </div>
+
+            <div class="col-12">
+              <div class="form-check form-switch mb-2">
+                <input class="form-check-input" type="checkbox" id="switchStrict" checked>
+                <label class="form-check-label fw-bold small text-dark" for="switchStrict">Strict CSS Box-Sizing Enforcement</label>
+              </div>
+              <div class="form-check form-switch">
+                <input class="form-check-input" type="checkbox" id="switchA11y" checked>
+                <label class="form-check-label fw-bold small text-dark" for="switchA11y">WCAG 2.1 Color Contrast Checker</label>
+              </div>
+            </div>
+
+            <div class="col-12 mt-3">
+              <div class="p-3 bg-light rounded d-flex justify-content-between align-items-center">
+                <div>
+                  <div class="fw-bold text-dark small">Toast Notification Trigger</div>
+                  <div class="text-muted small">Test dynamic floating feedback alerts</div>
+                </div>
+                <button class="btn btn-sm btn-gradient" onclick="showLiveToast()">Test Toast</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Test Log Table -->
+    <div class="card card-argon p-4" id="tables">
+      <div class="d-flex justify-content-between align-items-center mb-3">
+        <div>
+          <h5 class="fw-bold text-dark mb-0"><i class="fa-solid fa-list-check text-success me-2"></i> Recent Component Test Executions</h5>
+          <span class="text-muted small">Showing the latest automated assertions for Argon design tokens.</span>
+        </div>
+        <span class="badge badge-soft-success p-2">Status: All Passing</span>
+      </div>
+
+      <div class="table-responsive">
+        <table class="table align-items-center table-hover mb-0">
+          <thead class="thead-light">
+            <tr class="text-muted text-uppercase small">
+              <th>Component Tested</th>
+              <th>Category</th>
+              <th>Duration</th>
+              <th>Status</th>
+              <th>Assertion Result</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="fw-bold text-dark"><i class="fa-solid fa-layer-group text-primary me-2"></i> Navbar_StickyHeader</td>
+              <td>Navigation</td>
+              <td>12.4 ms</td>
+              <td><span class="badge badge-soft-success px-2 py-1"><i class="fa fa-check me-1"></i> PASS</span></td>
+              <td class="text-muted small">Blur filter, z-index 1050 correctly applied</td>
+            </tr>
+            <tr>
+              <td class="fw-bold text-dark"><i class="fa-solid fa-square-poll-vertical text-info me-2"></i> StatCard_Gradients</td>
+              <td>Widgets</td>
+              <td>8.1 ms</td>
+              <td><span class="badge badge-soft-success px-2 py-1"><i class="fa fa-check me-1"></i> PASS</span></td>
+              <td class="text-muted small">Box shadow and 87deg angle verified</td>
+            </tr>
+            <tr>
+              <td class="fw-bold text-dark"><i class="fa-solid fa-sliders text-warning me-2"></i> Switch_CustomToggles</td>
+              <td>Form Controls</td>
+              <td>15.7 ms</td>
+              <td><span class="badge badge-soft-success px-2 py-1"><i class="fa fa-check me-1"></i> PASS</span></td>
+              <td class="text-muted small">Smooth transform transition at 250ms</td>
+            </tr>
+            <tr>
+              <td class="fw-bold text-dark"><i class="fa-solid fa-chart-line text-success me-2"></i> Chart_InteractionTooltip</td>
+              <td>Analytics</td>
+              <td>22.0 ms</td>
+              <td><span class="badge badge-soft-success px-2 py-1"><i class="fa fa-check me-1"></i> PASS</span></td>
+              <td class="text-muted small">Canvas responsive redraw on resize event</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="py-4 text-center text-muted small">
+      <p class="mb-1">Argon UI Testing Sandbox &bull; Built with Argon Design System &amp; Bootstrap 5</p>
+      <p class="mb-0">
+        <a href="https://github.com/NikhilForge/argonuitesting" class="text-primary fw-bold text-decoration-none me-3">GitHub Repository</a>
+        <a href="cinematic.html" class="text-primary fw-bold text-decoration-none">3D Animation Showcase</a>
+      </p>
+    </footer>
+
+  </div>
+
+  <!-- Toast Container -->
+  <div class="toast-container position-fixed bottom-0 end-0 p-3" style="z-index: 1100;">
+    <div id="liveToast" class="toast align-items-center text-white bg-success border-0" role="alert" aria-live="assertive" aria-atomic="true">
+      <div class="d-flex">
+        <div class="toast-body">
+          <i class="fa-solid fa-circle-check me-2"></i> Argon UI Test Assertion Verified Successfully!
+        </div>
+        <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Interactive Scripts -->
+  <script>
+    // Performance Chart
+    const ctxPerf = document.getElementById('performanceChart').getContext('2d');
+    const perfChart = new Chart(ctxPerf, {
+      type: 'line',
+      data: {
+        labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+        datasets: [{
+          label: 'Render Time (ms)',
+          data: [18, 16, 15, 14.5, 14.2, 13.9, 14.2],
+          borderColor: '#5e72e4',
+          backgroundColor: 'rgba(94, 114, 228, 0.1)',
+          fill: true,
+          tension: 0.4,
+          borderWidth: 3
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: { legend: { display: false } },
+        scales: {
+          y: { beginAtZero: false, grid: { color: '#e9ecef' } },
+          x: { grid: { display: false } }
+        }
+      }
+    });
+
+    // Distribution Chart
+    const ctxDist = document.getElementById('distributionChart').getContext('2d');
+    new Chart(ctxDist, {
+      type: 'doughnut',
+      data: {
+        labels: ['Buttons', 'Forms', 'Modals'],
+        datasets: [{
+          data: [35, 40, 25],
+          backgroundColor: ['#5e72e4', '#11cdef', '#2dce89'],
+          borderWidth: 0
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        cutout: '75%',
+        plugins: { legend: { display: false } }
+      }
+    });
+
+    function showLiveToast() {
+      const toastEl = document.getElementById('liveToast');
+      const toast = new bootstrap.Toast(toastEl);
+      toast.show();
+    }
+
+    function simulateTests() {
+      const banner = document.getElementById('testProgressBanner');
+      const bar = document.getElementById('progressBar');
+      const text = document.getElementById('progressText');
+      const btn = document.getElementById('runAllTestsBtn');
+      
+      banner.classList.remove('d-none');
+      btn.disabled = true;
+      let progress = 0;
+
+      const interval = setInterval(() => {
+        progress += 20;
+        bar.style.width = progress + '%';
+        text.innerText = progress + '%';
+
+        if (progress >= 100) {
+          clearInterval(interval);
+          setTimeout(() => {
+            banner.classList.add('d-none');
+            btn.disabled = false;
+            showLiveToast();
+          }, 800);
+        }
+      }, 250);
+    }
+  </script>
+</body>
+</html>

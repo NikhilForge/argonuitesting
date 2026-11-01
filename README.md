@@ -9,12 +9,16 @@
 </p>
 
 <p align="center">
+  <a href="https://nikhilforge.github.io/argonuitesting/"><img src="https://img.shields.io/badge/Live_Demo-GitHub_Pages-brightgreen?style=for-the-badge&logo=github" alt="Live Demo" /></a>
   <a href="#-features"><img src="https://img.shields.io/badge/Design_System-Argon_UI-5e72e4?style=for-the-badge&logo=bootstrap&logoColor=white" alt="Argon UI" /></a>
   <a href="#-tech-stack"><img src="https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white" alt="HTML5" /></a>
   <a href="#-tech-stack"><img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black" alt="JavaScript" /></a>
   <a href="#-tech-stack"><img src="https://img.shields.io/badge/Bootstrap_5-7952B3?style=for-the-badge&logo=bootstrap&logoColor=white" alt="Bootstrap 5" /></a>
   <a href="#-license"><img src="https://img.shields.io/badge/License-MIT-green?style=for-the-badge" alt="License" /></a>
 </p>
+
+> 🌐 **Live Website**: [https://nikhilforge.github.io/argonuitesting/](https://nikhilforge.github.io/argonuitesting/)  
+> 🎬 **3D Cinematic Demo**: [https://nikhilforge.github.io/argonuitesting/cinematic.html](https://nikhilforge.github.io/argonuitesting/cinematic.html)
 
 ---
 
@@ -126,3 +130,4 @@ This project is licensed under the [MIT License](LICENSE).
 ## 🙏 Acknowledgments
 
 - Built using the [Argon Design System](https://www.creative-tim.com/product/argon-design-system) by [Creative Tim](https://www.creative-tim.com/).
+
